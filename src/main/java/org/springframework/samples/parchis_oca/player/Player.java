@@ -99,10 +99,10 @@ public class Player extends Person {
 		return Collections.unmodifiableList(sortedPets);
 	}
 
-	public void addPet(Game pet) {
+	/*public void addPet(Game pet) {
 		getPetsInternal().add(pet);
 		pet.setOwner(this);
-	}
+	}*/
 	
 	public boolean removePet(Game pet) {
 		return getPetsInternal().remove(pet);
