@@ -33,12 +33,12 @@ public class GameService {
 
 	private GameRepository petRepository;
 	
-	private ActionGameRepository visitRepository;
+	private GameActionRepository visitRepository;
 	
 
 	@Autowired
 	public GameService(GameRepository petRepository,
-			ActionGameRepository visitRepository) {
+			GameActionRepository visitRepository) {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 	}
@@ -49,7 +49,7 @@ public class GameService {
 	}*/
 	
 	@Transactional
-	public void saveVisit(ActionGame visit) throws DataAccessException {
+	public void saveVisit(GameAction visit) throws DataAccessException {
 		visitRepository.save(visit);
 	}
 

@@ -1,50 +1,124 @@
 package org.springframework.samples.parchis_oca.game;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.samples.parchis_oca.enums.GameMovement;
+import org.springframework.samples.parchis_oca.enums.GameOption;
+import org.springframework.samples.parchis_oca.enums.GameStatus;
 import org.springframework.samples.parchis_oca.model.NamedEntity;
 import org.springframework.samples.parchis_oca.player.Player;
-
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Getter
 @Setter
 @Entity
-@Table(name = "pets")
+@Table(name = "games")
 public class Game extends NamedEntity {
-
-	@Column(name = "birth_date")        
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private LocalDate birthDate;
-
-	@ManyToOne
-	@JoinColumn(name = "type_id")
-	private ActionGame type;
-
-	@ManyToOne
-	@JoinColumn(name = "owner_id")
-	private Player owner;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "game", fetch = FetchType.EAGER)
-	private List<GameBoard> visits;
-
 	
+    @Transient
+    private static final Logger logger = LogManager.getLogger(Game.class);
+	   
+	//Attributes
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int game_id;
+
+    @NotEmpty
+    private String name;
+
+    private int maxPlayer;
+
+    @ElementCollection
+    private List<String> historyBoard;
+
+    private boolean gameStarted = false;
+    
+    //Enumerates
+    
+    @Enumerated(EnumType.STRING)
+    private GameStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private GameOption gameOption;  
+    
+    @Enumerated(EnumType.STRING)
+    private GameMovement gameMovement = GameMovement.START;
+    
+    //Relationships
+
+    @ManyToOne()
+    @JoinColumn(name = "username")
+    private Player creator;
+    
+    @OneToOne
+    private Player current_player;
+    
+    @ManyToOne()
+    private Player winner;
+
+    @OneToOne(mappedBy = "game")
+    private GameBoard gameboard;
+
+    @ManyToMany
+    private List <Player> currentPlayers;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Turns> turns;
+
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime startTime;
+
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime endTime;
+    
+    //Methods
+    
+    public void addTurn(Turns turn) {
+        if (turns == null)
+            turns = new ArrayList <> ();
+
+        turns.add(turn);
+
+    }
+
+    public boolean checkMaxAmountPlayers() {
+        logger.info(this.getCurrentPlayers());
+        return this.getCurrentPlayers().size() < maxPlayer;
+    }
+
+
+    public void setCurrent_players(Player player) {
+        currentPlayers = new ArrayList < > ();
+        logger.info("Current players.size before" + currentPlayers.size());
+        currentPlayers.add(player);
+        logger.info("Current players.size" + currentPlayers.size());
+    }
+    public void setTurns(Turns turn){
+        turns = new ArrayList<>();
+        turns.add(turn);
+    }
+
 }

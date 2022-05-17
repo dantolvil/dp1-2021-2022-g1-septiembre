@@ -68,7 +68,7 @@ public class GameController {
 	@GetMapping(value = "/pets/new")
 	public String initCreationForm(Player owner, ModelMap model) {
 		Game pet = new Game();
-		owner.addPet(pet);
+		//owner.addPet(pet);
 		model.put("pet", pet);
 		return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 	}
