@@ -10,18 +10,18 @@ public class GameActionService {
 
 	private GameRepository gameRepository;
 	
-	private GameActionRepository actionGameRepository;
+	private GameActionRepository gameActionRepository;
 	
 
 	@Autowired
 	public GameActionService(GameActionRepository visitRepository) {
-		this.actionGameRepository = actionGameRepository;
+		this.gameActionRepository = gameActionRepository;
 	}
 
 	
 	@Transactional
-	public void saveActionGame(GameAction actionGame) throws DataAccessException {
-		actionGameRepository.save(actionGame);
+	public void saveActionGame(GameAction gameAction) throws DataAccessException {
+		gameActionRepository.save(gameAction);
 	}
 
 }

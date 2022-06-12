@@ -1,11 +1,8 @@
 package org.springframework.samples.parchis_oca.game;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -18,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "actiongames")
+@Table(name = "gameActions")
 public class GameAction extends BaseEntity {
 
 	
@@ -30,11 +27,6 @@ public class GameAction extends BaseEntity {
 	@NotEmpty
 	@Column(name = "description")
 	private String description;
-
-	
-	@ManyToOne
-	@JoinColumn(name = "game_id")
-	private Game game;
 
 
 	public GameAction() {
