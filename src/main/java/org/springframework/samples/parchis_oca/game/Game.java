@@ -41,10 +41,6 @@ public class Game extends NamedEntity {
     private static final Logger logger = LogManager.getLogger(Game.class);
 	   
 	//Attributes
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int game_id;
 
     @NotEmpty
     private String name;
@@ -79,14 +75,14 @@ public class Game extends NamedEntity {
     @ManyToOne()
     private Player winner;
 
-    @OneToOne(mappedBy = "game")
-    private GameBoard gameboard;
+    @OneToOne(cascade = CascadeType.ALL)
+    private GameBoard gameBoard;
 
     @ManyToMany
     private List <Player> currentPlayers;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Turns> turns;
+    private List<Turn> turns;
 
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime startTime;
@@ -96,7 +92,7 @@ public class Game extends NamedEntity {
     
     //Methods
     
-    public void addTurn(Turns turn) {
+    public void addTurn(Turn turn) {
         if (turns == null)
             turns = new ArrayList <> ();
 
@@ -116,9 +112,10 @@ public class Game extends NamedEntity {
         currentPlayers.add(player);
         logger.info("Current players.size" + currentPlayers.size());
     }
-    public void setTurns(Turns turn){
+    public void setTurns(Turn turn){
         turns = new ArrayList<>();
         turns.add(turn);
-    }
-
+    } 
+    
+ 
 }
