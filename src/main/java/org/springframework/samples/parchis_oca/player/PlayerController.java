@@ -1,28 +1,9 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.springframework.samples.parchis_oca.player;
 
 import java.util.Collection;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.parchis_oca.user.AuthoritiesService;
-import org.springframework.samples.parchis_oca.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,111 +14,97 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- * @author Juergen Hoeller
- * @author Ken Krebs
- * @author Arjen Poutsma
- * @author Michael Isvy
- */
 @Controller
 public class PlayerController {
 
-	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+	private static final String VIEWS_PLAYER_CREATE_OR_UPDATE_FORM = "players/createOrUpdateOwnerForm";
 
-	private final PlayerService ownerService;
+	private static final String VIEWS_PLAYERS_CREATE_OR_UPDATE_FORM = null;
 
-	@Autowired
-	public PlayerController(PlayerService ownerService, UserService userService, AuthoritiesService authoritiesService) {
-		this.ownerService = ownerService;
-	}
+    @Autowired
+    private PlayerService playerService;
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
 
-	@GetMapping(value = "/owners/new")
+	@GetMapping(value = "/player/new")
 	public String initCreationForm(Map<String, Object> model) {
-		Player owner = new Player();
-		model.put("owner", owner);
-		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+		Player player = new Player();
+		model.put("player", player);
+		return VIEWS_PLAYER_CREATE_OR_UPDATE_FORM;
 	}
 
-	@PostMapping(value = "/owners/new")
-	public String processCreationForm(@Valid Player owner, BindingResult result) {
+	@PostMapping(value = "/players/new")
+	public String processCreationForm(@Valid Player player, BindingResult result) {
 		if (result.hasErrors()) {
-			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+			return VIEWS_PLAYER_CREATE_OR_UPDATE_FORM;
 		}
 		else {
-			//creating owner, user and authorities
-			this.ownerService.saveOwner(owner);
+			this.playerService.savePlayer(player);
 			
-			return "redirect:/owners/" + owner.getId();
+			return "redirect:/players/" + player.getId();
 		}
 	}
 
-	@GetMapping(value = "/owners/find")
+	@GetMapping(value = "/players/find")
 	public String initFindForm(Map<String, Object> model) {
-		model.put("owner", new Player());
-		return "owners/findOwners";
+		model.put("player", new Player());
+		return "players/findPlayers";
 	}
 
-	@GetMapping(value = "/owners")
-	public String processFindForm(Player owner, BindingResult result, Map<String, Object> model) {
+	//@GetMapping(value = "/players")
+	/*public String processFindForm(Player player, BindingResult result, Map<String, Object> model) {
 
 		// allow parameterless GET request for /owners to return all records
-		if (owner.getLastName() == null) {
-			owner.setLastName(""); // empty string signifies broadest possible search
+		if (player.getLastName() == null) {
+			player.setLastName(""); // empty string signifies broadest possible search
 		}
 
-		// find owners by last name
-		Collection<Player> results = this.ownerService.findOwnerByLastName(owner.getLastName());
-		if (results.isEmpty()) {
-			// no owners found
+		// find players by last name
+		//Collection<Player> results = this.playerService.findPlayerByLastName(player.getLastName());
+		/*if (results.isEmpty()) {
+			// no players found
 			result.rejectValue("lastName", "notFound", "not found");
-			return "owners/findOwners";
+			return "players/findOwners";
 		}
 		else if (results.size() == 1) {
-			// 1 owner found
-			owner = results.iterator().next();
-			return "redirect:/owners/" + owner.getId();
+			// 1 player found
+			player = results.iterator().next();
+			return "redirect:/players/" + player.getId();
 		}
 		else {
-			// multiple owners found
+			// multiple players found
 			model.put("selections", results);
-			return "owners/ownersList";
-		}
+			return "players/playersList";
+		}*/
+	//}
+
+	@GetMapping(value = "/players/{playerId}/edit")
+	public String initUpdatePlayerForm(@PathVariable("playerId") int playerId, Model model) {
+		//Player player = this.playerService.findPlayerById(playerId);
+	//	model.addAttribute(player);
+		return VIEWS_PLAYER_CREATE_OR_UPDATE_FORM;
 	}
 
-	@GetMapping(value = "/owners/{ownerId}/edit")
-	public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
-		Player owner = this.ownerService.findOwnerById(ownerId);
-		model.addAttribute(owner);
-		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-	}
-
-	@PostMapping(value = "/owners/{ownerId}/edit")
-	public String processUpdateOwnerForm(@Valid Player owner, BindingResult result,
-			@PathVariable("ownerId") int ownerId) {
+	@PostMapping(value = "/players/{playerId}/edit")
+	public String processUpdatePlayerForm(@Valid Player player, BindingResult result,
+			@PathVariable("playerId") int playerId) {
 		if (result.hasErrors()) {
-			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+			return VIEWS_PLAYERS_CREATE_OR_UPDATE_FORM;
 		}
 		else {
-			owner.setId(ownerId);
-			this.ownerService.saveOwner(owner);
-			return "redirect:/owners/{ownerId}";
+			player.setId(playerId);
+			this.playerService.savePlayer(player);
+			return "redirect:/players/{playerId}";
 		}
 	}
 
-	/**
-	 * Custom handler for displaying an owner.
-	 * @param ownerId the ID of the owner to display
-	 * @return a ModelMap with the model attributes for the view
-	 */
-	@GetMapping("/owners/{ownerId}")
-	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
-		ModelAndView mav = new ModelAndView("owners/ownerDetails");
-		mav.addObject(this.ownerService.findOwnerById(ownerId));
+	@GetMapping("/players/{playerId}")
+	public ModelAndView showOwner(@PathVariable("playerId") int playerId) {
+		ModelAndView mav = new ModelAndView("players/playerDetails");
+		//mav.addObject(this.playerService.findPlayerById(playerId));
 		return mav;
 	}
 
