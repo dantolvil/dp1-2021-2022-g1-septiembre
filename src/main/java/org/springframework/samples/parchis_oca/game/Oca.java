@@ -11,8 +11,7 @@ import lombok.Setter;
 @Table(name = "oca")
 public class Oca extends GameBoard {
    
-	@Id
-    private Integer id;
+
 
 
 }

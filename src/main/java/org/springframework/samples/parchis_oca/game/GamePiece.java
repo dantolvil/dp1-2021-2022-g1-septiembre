@@ -1,5 +1,7 @@
 package org.springframework.samples.parchis_oca.game;
 
+import java.awt.Color;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,7 +19,12 @@ import lombok.Setter;
 @Table(name = "gamePieces")
 public class GamePiece extends BaseEntity{
 
-
+	
+	//Attributes
+	
+	private Color pieceColor;
+	
+    //Relationships
 
     @ManyToOne
     @JoinColumn(name = "boardField")

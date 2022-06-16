@@ -1,14 +1,11 @@
 package org.springframework.samples.parchis_oca.game;
 
-import java.time.LocalDate;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import org.springframework.samples.parchis_oca.model.BaseEntity;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,20 +15,20 @@ import lombok.Setter;
 @Table(name = "gameActions")
 public class GameAction extends BaseEntity {
 
+	//Attributes:
 	
-	@Column(name = "visit_date")        
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private LocalDate date;
-
-
-	@NotEmpty
-	@Column(name = "description")
-	private String description;
-
-
-	public GameAction() {
-		this.date = LocalDate.now();
-	}
+	@NotBlank
+	private String action;
+	
+	@NotNull
+	private Integer actionNumber;
+	
+	private boolean actionChoose = false;
+	
+	//Relationships:
+	
+	@ManyToOne()
+	public GameBoard gameBoard;
 
 
 }

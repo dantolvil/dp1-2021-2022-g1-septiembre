@@ -8,9 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name = "parchis")
 public class Parchis extends GameBoard {
     
-	@Id
-    private Integer id;
 
 }
