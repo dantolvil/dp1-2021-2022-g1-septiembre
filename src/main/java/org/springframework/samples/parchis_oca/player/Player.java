@@ -35,6 +35,11 @@ public class Player extends Person {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "gamePiece")
 	private GamePiece gamePiece;
+
+	public boolean checkAlreadyCreatedGames() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }

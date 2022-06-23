@@ -1,8 +1,11 @@
 package org.springframework.samples.parchis_oca.player;
 
-import java.util.Collection;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,15 +19,15 @@ public class PlayerService {
 		this.playerRepository = playerRepository;
 	}	
 
-	/*@Transactional(readOnly = true)
-	public Player findPlayerById(int id) throws DataAccessException {
-		return playerRepository.findById(id);
-	}
-
-	@Transactional(readOnly = true)
-	public Collection<Player> findPlayerByLastName(String lastName) throws DataAccessException {
-		return playerRepository.findByLastName(lastName);
-	}*/
+    public Optional <Player> getCurrentPlayer() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return findPlayer(currentPrincipalName);
+    }
+    
+    public Optional <Player> findPlayer(String player) {
+        return playerRepository.findById(player);
+    }
 
 	@Transactional
 	public void savePlayer(Player player) throws DataAccessException {
