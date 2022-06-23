@@ -16,7 +16,7 @@ public class GameBoardService {
         this.gameBoardRepository = gameBoardRepository;
     }
 	
-	public Optional<GameBoard> findById(Integer id) {
+	public Optional<Game> findById(Integer id) {
         return gameBoardRepository.findById(id);
     }
 
