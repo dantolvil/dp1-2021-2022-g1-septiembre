@@ -36,7 +36,7 @@ public class OcaController {
     }
 
     @GetMapping(value = "{gameid}")
-    public String initCanvasForm(@PathVariable("gameid") String gameid, ModelMap model, HttpServletResponse response) {
+    public String initCanvasForm(@PathVariable("gameid") int gameid, ModelMap model, HttpServletResponse response) {
         Optional <Game> game = gameService.findById(gameid);
 
         //ocaService.initGameBoard(game);
@@ -44,7 +44,7 @@ public class OcaController {
     }
 
     @GetMapping(value = "/join/{gameid}")
-    public String joinOca(@PathVariable("gameid") String gameid, ModelMap model, HttpServletResponse response) throws InterruptedException {
+    public String joinOca(@PathVariable("gameid") int gameid, ModelMap model, HttpServletResponse response) throws InterruptedException {
         response.addHeader("Refresh", "5");
         Optional < Game > gameOptional = this.gameService.findById(gameid);
         Game game = gameOptional.orElseThrow(EntityNotFoundException::new);
@@ -63,7 +63,7 @@ public class OcaController {
     }
 
     @GetMapping(value = "/join/{gameid}/dice")
-    public String diceRole(@PathVariable("gameid") String gameid, ModelMap model, HttpServletResponse response) {
+    public String diceRole(@PathVariable("gameid") int gameid, ModelMap model, HttpServletResponse response) {
 
         //check if this is the current user
         Optional <Game> game = gameService.findById(gameid);

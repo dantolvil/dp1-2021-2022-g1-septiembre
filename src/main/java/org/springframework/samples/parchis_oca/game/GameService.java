@@ -29,8 +29,8 @@ public class GameService {
 	}
 
 	
-    public Optional <Game> findById(String game) {
-        return gameRepository.findById(game);
+    public Optional <Game> findById(int i) {
+        return gameRepository.findById(i);
     }
 
 

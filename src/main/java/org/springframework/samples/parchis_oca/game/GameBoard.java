@@ -40,5 +40,10 @@ public class GameBoard  extends BaseEntity {
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "gameBoard")
 	private List<BoardField> boardField;
 
+	public Object getBoardFields() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

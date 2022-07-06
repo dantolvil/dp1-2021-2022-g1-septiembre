@@ -35,5 +35,4 @@ public class GamePiece extends BaseEntity{
     private Player player;
 
 
-
 }

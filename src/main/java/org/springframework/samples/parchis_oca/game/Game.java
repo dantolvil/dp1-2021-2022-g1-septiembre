@@ -67,7 +67,7 @@ public class Game extends NamedEntity {
     private Player creator;
     
     @OneToOne
-    private Player current_player;
+    private Player currentPlayer;
     
     @ManyToOne()
     private Player winner;
@@ -102,17 +102,16 @@ public class Game extends NamedEntity {
         return this.getCurrentPlayers().size() < maxPlayer;
     }
 
-
-    public void setCurrent_players(Player player) {
+    public void setCurrentPlayers(Player player) {
         currentPlayers = new ArrayList < > ();
         logger.info("Current players.size before" + currentPlayers.size());
         currentPlayers.add(player);
         logger.info("Current players.size" + currentPlayers.size());
     }
+    
     public void setTurns(Turn turn){
         turns = new ArrayList<>();
         turns.add(turn);
-    } 
-    
+    }
  
 }
