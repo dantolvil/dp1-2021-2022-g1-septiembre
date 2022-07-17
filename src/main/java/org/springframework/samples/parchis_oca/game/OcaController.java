@@ -34,11 +34,10 @@ public class OcaController {
         this.gameService = gameService;
         this.playerService = playerservice;
     }
+    
 
     @GetMapping(value = "{gameid}")
     public String initCanvasForm(@PathVariable("gameid") int gameid, ModelMap model, HttpServletResponse response) {
-        Optional <Game> game = gameService.findById(gameid);
-
         //ocaService.initGameBoard(game);
         return "redirect:/" + VIEWS_JOIN_OCA + gameid;
     }

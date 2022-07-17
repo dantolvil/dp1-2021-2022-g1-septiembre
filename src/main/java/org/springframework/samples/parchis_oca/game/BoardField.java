@@ -16,9 +16,10 @@ import lombok.Setter;
 @Table(name = "boardFields")
 public class BoardField extends BaseEntity{
 	
+	private int number;
+	
     @ManyToOne()
-    @JoinColumn(name = "gameBoard")
-    private GameBoard gameBoard;
+    private GameBoard board;
     
     @OneToOne
     public BoardField nextBoardField;

@@ -10,6 +10,6 @@ public interface GameBoardRepository extends CrudRepository<Game, Integer> {
 
 	Optional<GameBoard> findById(int id) throws DataAccessException;
 
-	void save(GameBoard gameBoardField);
+	void save(GameBoard gameBoard);
 
 }

@@ -4,8 +4,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.parchis_oca.player.PlayerService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class ParchisService {
 	
 
@@ -21,11 +23,7 @@ public class ParchisService {
     @Autowired
     PlayerService playerService;
 	
-    @Autowired
-    public ParchisService(ParchisRepository parchisRepository) {
-        this.parchisRepository = parchisRepository;
-    }
-    
+   
     @Autowired
     public ParchisService(ParchisRepository parchisRepository,
                            GameBoardRepository gameBoardRepository, BoardFieldService boardFieldService,

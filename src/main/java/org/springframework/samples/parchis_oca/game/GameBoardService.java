@@ -22,8 +22,8 @@ public class GameBoardService {
 
 
     @Transactional
-    public void save(GameBoard gameBoardField) throws DataAccessException {
-    	gameBoardRepository.save(gameBoardField);
+    public void save(GameBoard gameBoard) throws DataAccessException {
+    	gameBoardRepository.save(gameBoard);
     }
 
 }
