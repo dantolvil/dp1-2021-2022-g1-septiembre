@@ -4,10 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="parchisoca" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="parchis_oca" tagdir="/WEB-INF/tags"%>
 
 
-<parchisoca:layout pageName="games">
+<parchis_oca:layout pageName="games">
 	<div class="row">
 
 		<!-- FORM for creating new game -->
@@ -99,4 +99,4 @@
 			</form:form>
 		</div>
 	</div>	
-</parchisoca:layout>
+</parchis_oca:layout>
