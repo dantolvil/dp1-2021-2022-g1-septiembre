@@ -1,7 +1,7 @@
 package org.springframework.samples.parchis_oca.player;
 
-import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +29,7 @@ public class PlayerController {
 		dataBinder.setDisallowedFields("id");
 	}
 
+	//HTTP(GET). Mediante GET se recuperan los datos de la entidad Player.
 	@GetMapping(value = "/player/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Player player = new Player();
@@ -36,6 +37,8 @@ public class PlayerController {
 		return VIEWS_PLAYER_CREATE_OR_UPDATE_FORM;
 	}
 
+	//HTTP(POST). Si no se producen errores en el modelo, se guardan los datos en el servicio usando el método save(). 
+	// Por el contrario, si se produce un error se nos redirecciona a la vista con el formulario para la creación.
 	@PostMapping(value = "/players/new")
 	public String processCreationForm(@Valid Player player, BindingResult result) {
 		if (result.hasErrors()) {
@@ -54,40 +57,19 @@ public class PlayerController {
 		return "players/findPlayers";
 	}
 
-	//@GetMapping(value = "/players")
-	/*public String processFindForm(Player player, BindingResult result, Map<String, Object> model) {
-
-		// allow parameterless GET request for /owners to return all records
-		if (player.getLastName() == null) {
-			player.setLastName(""); // empty string signifies broadest possible search
-		}
-
-		// find players by last name
-		//Collection<Player> results = this.playerService.findPlayerByLastName(player.getLastName());
-		/*if (results.isEmpty()) {
-			// no players found
-			result.rejectValue("lastName", "notFound", "not found");
-			return "players/findOwners";
-		}
-		else if (results.size() == 1) {
-			// 1 player found
-			player = results.iterator().next();
-			return "redirect:/players/" + player.getId();
-		}
-		else {
-			// multiple players found
-			model.put("selections", results);
-			return "players/playersList";
-		}*/
-	//}
-
+	//Mediante el uso del servicio PlayerService se obtiene el jugador que va a
+	//ser modificado a través de su Id y se redirecciona a la vista de edición.
 	@GetMapping(value = "/players/{playerId}/edit")
-	public String initUpdatePlayerForm(@PathVariable("playerId") int playerId, Model model) {
-		//Player player = this.playerService.findPlayerById(playerId);
-	//	model.addAttribute(player);
+	public String initUpdatePlayerForm(@PathVariable("playerId") String playerId, Model model) {
+		Optional<Player> player = this.playerService.findPlayer(playerId);
+		model.addAttribute(player);
 		return VIEWS_PLAYER_CREATE_OR_UPDATE_FORM;
 	}
 
+
+	//Al realizar la edición del jugador se comprueba si presenta errores, 
+	//si todo ha ido bien se redirecciona a la vista de los detalles del jugador.
+	//Por el contrario, si se encuentran errores se devolverá a la vista anterior. 
 	@PostMapping(value = "/players/{playerId}/edit")
 	public String processUpdatePlayerForm(@Valid Player player, BindingResult result,
 			@PathVariable("playerId") int playerId) {
@@ -101,10 +83,11 @@ public class PlayerController {
 		}
 	}
 
+	//Se muestra el jugador que se obtiene por url a través del playerId.
 	@GetMapping("/players/{playerId}")
-	public ModelAndView showOwner(@PathVariable("playerId") int playerId) {
+	public ModelAndView showOwner(@PathVariable("playerId") String playerId) {
 		ModelAndView mav = new ModelAndView("players/playerDetails");
-		//mav.addObject(this.playerService.findPlayerById(playerId));
+		mav.addObject(this.playerService.findPlayer(playerId));
 		return mav;
 	}
 

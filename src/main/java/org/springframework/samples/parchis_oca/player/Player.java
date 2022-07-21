@@ -4,8 +4,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -17,18 +15,19 @@ import org.springframework.samples.parchis_oca.model.Person;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @Entity
 @Table(name = "players")
 public class Player extends Person {
 
+	//Attributes
+	
 	@Column(name = "email")
 	@NotBlank
 	private String email;
 
-
+	//Relationships
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Turn> turn;
 	
@@ -37,9 +36,8 @@ public class Player extends Person {
 	private GamePiece gamePiece;
 
 	public boolean checkAlreadyCreatedGames() {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 	
-
 }

@@ -19,6 +19,7 @@ public class PlayerService {
 		this.playerRepository = playerRepository;
 	}	
 
+	//Recuperar el jugador actual
     public Optional <Player> getCurrentPlayer() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
@@ -29,6 +30,7 @@ public class PlayerService {
         return playerRepository.findById(player);
     }
 
+    //Guardar y crear un jugador @Transactional
 	@Transactional
 	public void savePlayer(Player player) throws DataAccessException {
 		//creating player
