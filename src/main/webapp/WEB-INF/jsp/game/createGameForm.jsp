@@ -10,7 +10,7 @@
 <parchis_oca:layout pageName="games">
 	<div class="row">
 
-		<!-- FORM for creating new game -->
+		<!-- FORM for create a new game -->
 		<div class="col-md-6 p-3 m-3 border border-secondary w-100 rounded">
 			<h2 class="lead">New game</h2>
 			<hr>
@@ -18,7 +18,7 @@
 				<div class="section2">
 					<div class="row">
 						<div class="col-3 text-end">
-							<h3>Game name :</h3>
+							<h3>Game name:</h3>
 						</div>
 						<div class="col">
 							<div class="form-group" ${status.error ? 'has-error' : '' }>
@@ -45,7 +45,7 @@
 
 					<div class="row">
 						<div class="col-3 text-end">
-							<h3>Max player :</h3>
+							<h3>Max player:</h3>
 						</div>
 						<div class="col">
 							<div class="form-group" ${status.error ? 'has-error' : '' }>
@@ -92,8 +92,7 @@
 					</div>
 					<br>
 					<div class="row form-group">
-						<button type="submit" class="btn btn-md btn-primary">New
-							Game</button>
+						<button type="submit" class="btn btn-md btn-primary">New Game</button>
 					</div>
 				</div>
 			</form:form>
