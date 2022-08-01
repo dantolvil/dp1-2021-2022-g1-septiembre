@@ -9,7 +9,7 @@
 <parchis_oca:layout pageName="owners">
 	<div class="col-md-6 p-3 m-3 border border-secondary w-100 rounded">
 		<form:form method="POST" modelAttribute="user" class="form-signin">
-			<h2 class="lead">Create your account in the platform (Remember that all fields must be filled)</h2>
+			<h2 class="lead">Create your account at system (Remember that all fields must be filled)</h2>
 			<hr>
 			<div class="row">
 				<div class="col-3 text-end">
@@ -104,7 +104,7 @@
 			</div>
 			<hr>
 			<div class="row">
-				<p>Please confirm your email after pressing the button Accept. Your account
+				<p>Please confirm your email after click on the button Accept. Your account
 					will be activated afterwards.</p>
 			</div>
 		</form:form>
