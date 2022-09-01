@@ -4,8 +4,8 @@
 
 <parchis_oca:layout pageName="error">
 
-    <spring:url value="/resources/images/parchis&oca.png" var="parchis&oca"/>
-    <img src="${parchis&oca}"/>
+    <spring:url value="/resources/images/parchisoca.png" var="parchisoca"/>
+    <img src="${parchisoca}"/>
 
     <h2>An error occurred</h2>
 
