@@ -96,7 +96,7 @@ public class GameController {
             try {
                 logger.info("creating Gamepieces");
                 this.gameService.setPlayersOfGame(game, player);
-                this.gameService.save(game);
+                this.gameService.save(null, game);
 
                 //this.gameService.initGame(game);
 
