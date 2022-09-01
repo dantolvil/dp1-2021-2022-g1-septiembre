@@ -123,7 +123,7 @@ public class OcaControllerTest {
     }
 
     @Test
-    public void exitGameTest() throws Exception {
+    public void exitGameTest() throws Exception{
 
 
         when(this.gameService.findById(1)).thenReturn(finishedGame());
@@ -134,7 +134,7 @@ public class OcaControllerTest {
     }
 
     @Test
-    public void throwDicesGameTest() throws Exception {
+    public void throwDicesGameTest() throws Exception{
 
 
         when(this.gameService.findById(1)).thenReturn(createGame());

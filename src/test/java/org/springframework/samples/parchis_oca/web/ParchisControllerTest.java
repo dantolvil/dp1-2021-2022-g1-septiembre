@@ -66,7 +66,7 @@ public class ParchisControllerTest {
     private Optional<Game> finishedGame() {
         Game game = new Game();
         Player creator = new Player();
-        game.setName("new_game");
+        game.setName("newGame");
         game.setStatus(GameStatus.FINISHED);
        game.setCreator(creator);
         game.setGameOption(GameOption.PARCHIS);
@@ -122,7 +122,7 @@ public class ParchisControllerTest {
 
 
     @Test
-public void exitGameTest() throws Exception {
+    public void exitGameTest() throws Exception{
 
 
         when(this.gameService.findById(1)).thenReturn(finishedGame());
@@ -133,7 +133,7 @@ public void exitGameTest() throws Exception {
     }
 
     @Test
-    public void throwDiceGameTest() throws Exception {
+    public void throwDiceGameTest() throws Exception{
 
 
         when(this.gameService.findById(1)).thenReturn(createGame());

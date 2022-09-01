@@ -32,7 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(value = GameController.class, includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE), excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityAutoConfiguration.class)
-
 public class GameControllerTests {
 
 
@@ -95,8 +94,8 @@ public class GameControllerTests {
 
     @Test
     @WithMockUser(value = "player1")
-    void testViewForCreateGame() throws Exception
-    {
+    void testViewForCreateGame() throws Exception{
+    	
       mockMvc.perform(get("/game/create"))
          .andDo(print())
          .andExpect(status().isOk())
@@ -108,8 +107,8 @@ public class GameControllerTests {
 
     @Test
     @WithMockUser(value = "player1")
-    void testViewForJoinGame() throws Exception
-    {
+    void testViewForJoinGame() throws Exception{
+    	
       mockMvc.perform(get("/game/join"))
          .andDo(print())
          .andExpect(status().isOk())
@@ -118,8 +117,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void testJoinGameShouldFail() throws Exception
-    {
+    void testJoinGameShouldFail() throws Exception{
 
       mockMvc.perform(post("/game/join"))
           .andDo(print())
@@ -127,8 +125,7 @@ public class GameControllerTests {
     }
 
     @Test
-    void testParchisGameJoin() throws Exception
-    {
+    void testParchisGameJoin() throws Exception{
 
       Integer gameID = 1;
       when(gameService.findById(gameID))
@@ -142,8 +139,7 @@ public class GameControllerTests {
 
 
     @Test
-    void testOcaGameJoin() throws Exception
-    {
+    void testOcaGameJoin() throws Exception{
 
 
         Integer gameID = 1;
@@ -154,11 +150,6 @@ public class GameControllerTests {
                 .contentType(MediaType.APPLICATION_JSON)
             ).andDo(print());
     }
-
-
-
-
-
 
 
 }
