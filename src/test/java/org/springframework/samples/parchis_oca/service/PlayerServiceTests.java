@@ -19,8 +19,8 @@ public class PlayerServiceTests {
 
 
     @Test
-    void findAuthentificationShouldReturnNull()
-    {
+    void findAuthentificationShouldReturnNull(){
+    	
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         assertNull(authentication);
     }

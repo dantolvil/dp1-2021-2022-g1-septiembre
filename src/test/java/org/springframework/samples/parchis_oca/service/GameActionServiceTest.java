@@ -22,8 +22,8 @@ public class GameActionServiceTest {
     GameActionService gameActionService;
 
     @Test
-    void findAndSaveGameAction()
-    {
+    void findAndSaveGameAction(){
+    	
         GameAction gameAction = new GameAction();
         gameAction.setAction("test");
         gameAction.setActionChoose(true);
@@ -35,8 +35,8 @@ public class GameActionServiceTest {
     }
 
     @Test
-    void shouldNotFindOrNonExistingGameAction()
-    {
+    void shouldNotFindOrNonExistingGameAction(){
+    	
         Optional<GameAction> optionalGameAction = this.gameActionService.findGameActionByAction("thisIsNotAGameAction");
         assertFalse(optionalGameAction.isPresent());
     }
