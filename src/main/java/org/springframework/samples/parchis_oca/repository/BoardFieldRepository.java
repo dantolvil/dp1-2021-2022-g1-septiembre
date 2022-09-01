@@ -8,7 +8,7 @@ import org.springframework.samples.parchis_oca.model.GameBoard;
 
 public interface BoardFieldRepository extends CrudRepository <BoardField, Integer > {
 	
-    public BoardField findByNumberAndBoard(@Param("number") Integer number, @Param("gameBoard") GameBoard gameBoard) throws DataAccessException;
+    public BoardField findByNumberAndGameBoard(@Param("number") Integer number, @Param("gameBoard") GameBoard gameBoard) throws DataAccessException;
 
 
 }
