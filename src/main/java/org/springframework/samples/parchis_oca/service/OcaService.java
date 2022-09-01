@@ -21,11 +21,13 @@ public class OcaService {
     private OcaRepository ocaRepository;
 
 
-    @Autowired
+    @SuppressWarnings("unused")
+	@Autowired
     private BoardFieldService boardFieldService;
 
 
-    @Autowired
+    @SuppressWarnings("unused")
+	@Autowired
     private PlayerService playerService;
 	
    
@@ -40,7 +42,7 @@ public class OcaService {
 
     }
     
-    public Optional < Oca > findById(Integer id) {
+    public Optional <Oca> findById(Integer id) {
         return ocaRepository.findById(id);
     }
 	

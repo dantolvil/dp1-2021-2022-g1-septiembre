@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.parchis_oca.enums.GameStatus;
 import org.springframework.samples.parchis_oca.model.Game;
+import org.springframework.samples.parchis_oca.model.GameBoard;
 import org.springframework.samples.parchis_oca.model.Player;
 import org.springframework.samples.parchis_oca.repository.GameRepository;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class GameService {
 
 	
 	@Transactional
-	public void save(Game game) throws DataAccessException {
+	public void save(GameBoard gameBoard, Game game) throws DataAccessException {
 		gameRepository.save(game);
 	}
 
@@ -52,7 +53,6 @@ public class GameService {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 
 }

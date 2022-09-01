@@ -16,7 +16,8 @@ public class ParchisService {
     @Autowired
     private ParchisRepository parchisRepository;
     
-    @Autowired
+    @SuppressWarnings("unused")
+	@Autowired
     private GameBoardRepository gameBoardRepository;
     
     @Autowired

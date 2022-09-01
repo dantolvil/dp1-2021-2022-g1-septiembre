@@ -31,10 +31,11 @@ public class BoardFieldService {
     }
 
     public BoardField find(Integer number, GameBoard gameBoard) {
-        return this.boardFieldRepository.findByNumberAndBoard(number, gameBoard);
+        return this.boardFieldRepository.findByNumberAndGameBoard(number, gameBoard);
     }
 
     public BoardField getNextBoardFieldByNumberBoard(Integer i, GameBoard gameBoard) {
-        return this.boardFieldRepository.findByNumberAndBoard(i, gameBoard).nextBoardField;
+        return this.boardFieldRepository.findByNumberAndGameBoard(i, gameBoard).nextBoardField;
     }
+
 }

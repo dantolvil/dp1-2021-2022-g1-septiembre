@@ -50,4 +50,14 @@ public class UserService {
 	public Optional<User> findUser(String username) {
 		return userRepository.findById(username);
 	}
+
+	public Object getCurrentUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getSelectedUser(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
