@@ -34,7 +34,7 @@ public class GameBoard  extends BaseEntity {
     @JoinColumn(name = "game")
     Game game;
     
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "board")
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "gameBoard")
 	private List<BoardField> boardField;
 
 	public Object getBoardFields() {
