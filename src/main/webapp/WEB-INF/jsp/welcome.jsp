@@ -7,8 +7,8 @@
     <h2><fmt:message key="welcome"/></h2>
     <div class="row">
         <div class="col-md-12">
-            <spring:url value="/resources/images/parchis&oca.png" htmlEscape="true" var="parchis_oca"/>
+            <spring:url value="/resources/images/parchisoca.png" htmlEscape="true" var="parchis_oca"/>
             <img class="img-responsive" src="${parchis_oca}"/>
         </div>
     </div>
-</parchis_oca:layout>
+</parchis_oca:layout> 
