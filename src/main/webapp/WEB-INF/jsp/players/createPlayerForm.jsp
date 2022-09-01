@@ -6,9 +6,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="parchis_oca" tagdir="/WEB-INF/tags"%>
 
-<parchis_oca:layout pageName="owners">
+<parchis_oca:layout pageName="players">
 	<div class="col-md-6 p-3 m-3 border border-secondary w-100 rounded">
-		<form:form method="POST" modelAttribute="user" class="form-signin">
+		<form:form method="POST" modelAttribute="player" class="form-signin">
 			<h2 class="lead">Create your account at system (Remember that all fields must be filled)</h2>
 			<hr>
 			<div class="row">
