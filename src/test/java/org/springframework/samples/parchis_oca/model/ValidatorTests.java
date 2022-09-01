@@ -7,7 +7,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.samples.parchis_oca.user.User;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 class ValidatorTests {
