@@ -24,12 +24,9 @@ public class AdministratorController {
     private static final String MESSAGE = "message";
     private static final String ERROR = "/error";
 
-
-    
+   
     @GetMapping(path="/profile/{adminId}")
     public String profile(@PathVariable("adminId") int adminId, ModelMap modelMap, HttpServletRequest request) {
-        // if the user is not an admin, it will return an error page (only admins can access this page)
-
         Optional<Administrator> admin = adminService.findAdminById(adminId);
         
         if(admin.isPresent()){

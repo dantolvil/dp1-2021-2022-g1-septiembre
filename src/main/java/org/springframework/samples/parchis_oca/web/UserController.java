@@ -39,7 +39,6 @@ public class UserController {
 			return VIEWS_USER_CREATE_FORM;
 		}
 		else {
-			//creating user
 			this.userService.saveUser(user);
 			return "redirect:/";
 		}

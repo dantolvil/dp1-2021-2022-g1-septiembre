@@ -68,10 +68,6 @@ public class GameController {
         return VIEWS_JOIN_GAME;
     }
 
-
-    /**
-     * method for creating a game.
-     */
     @PostMapping(value = "/create")
     public String processCreationForm(@Valid @ModelAttribute(name = "game") Game game, BindingResult result, @Valid Player player) {
 
@@ -98,7 +94,6 @@ public class GameController {
                 this.gameService.setPlayersOfGame(game, player);
                 this.gameService.save(null, game);
 
-                //this.gameService.initGame(game);
 
             } catch (Exception ex) {
                 logger.error("ERROR: " + ex.getMessage());
@@ -110,8 +105,8 @@ public class GameController {
             new_link = new_link + game.getId();
 
 
-
         }
+        
         logger.info("redirecting to" + new_link);
         return "redirect:/" + new_link;
     }
