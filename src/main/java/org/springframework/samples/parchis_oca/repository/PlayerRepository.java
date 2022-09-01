@@ -8,7 +8,7 @@ import org.springframework.samples.parchis_oca.model.Player;
 
 public interface PlayerRepository extends Repository<Player, Integer> {
 
-	void save(Player owner) throws DataAccessException;
+	void save(Player player) throws DataAccessException;
 
 	Optional<Player> findById(String player);
 
